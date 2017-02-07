@@ -1,0 +1,23 @@
+{
+  "name": "district-map",
+  "version": "1.0.0",
+  "description": "Visualization for per-district data",
+  "main": "index.js",
+  "dependencies": {
+    "express": "^4.14.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hammerdr/congressionaldistricts.git"
+  },
+  "author": "hammerdr",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/hammerdr/congressionaldistricts/issues"
+  },
+  "homepage": "https://github.com/hammerdr/congressionaldistricts#readme"
+}
