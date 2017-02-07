@@ -1,4 +1,22 @@
 <html>
+  <head>
+    <style>
+    .districtBorder {
+      fill: none;
+      stroke: #000;
+      stroke-width: 1px;
+      stroke-opacity: .2;
+      pointer-events: none;
+    }
+
+    .stateBorder {
+      fill: none;
+      stroke: #000;
+      stroke-width: 2px;
+      pointer-events: none;
+    }
+    </style>
+  </head>
   <body>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.5/d3.min.js"></script>
     <script src="https://d3js.org/topojson.v2.min.js"></script>
@@ -16,11 +34,19 @@ var showDistrict = function(t) {
 
   document.getElementById('infobox').innerText = value;
 
-  d3.select(this).style({ fill: 'white', stroke: colorDistrict })
+  if (!t || t.properties.districtID < 0) {
+    return;
+  }
+
+  d3.selectAll('path')
+    .filter(function(r, i) { return r && t.properties.districtID == r.properties.districtID; })
+    .style({ fill: 'white', stroke: colorDistrict });
 };
 
 var hideDistrict = function(t) {
-  d3.select(this).style({ fill: colorDistrict, stroke: colorDistrict })
+  d3.selectAll('path')
+    .filter(function(r, i) { return r && t.properties.districtID == r.properties.districtID; })
+    .style({ fill: colorDistrict, stroke: colorDistrict });
 };
 
 var hexProjection = function(radius) {
@@ -97,22 +123,6 @@ fetch('https://raw.githubusercontent.com/hammerdr/congressionaldistricts/master/
   });
 });
     </script>
-<style>
-.districtBorder {
-  fill: none;
-  stroke: #000;
-  stroke-width: 1px;
-  stroke-opacity: .2;
-  pointer-events: none;
-}
-
-.stateBorder {
-  fill: none;
-  stroke: #000;
-  stroke-width: 2px;
-  pointer-events: none;
-}
-</style>
     <div id=map></div>
     <div id=infobox></div>
   </body>
