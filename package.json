@@ -4,6 +4,7 @@
   "description": "Visualization for per-district data",
   "main": "index.js",
   "dependencies": {
+    "airtable": "^0.4.4",
     "express": "^4.14.1"
   },
   "devDependencies": {},
