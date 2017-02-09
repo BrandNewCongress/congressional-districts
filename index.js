@@ -18,7 +18,7 @@ var getOrLoadNominations = function(done) {
     }).eachPage(function(records, fetchNextPage) {
       records.forEach(function(record) {
         console.log(record.fields);
-        candidates[record.get('ID')] = record.fields;
+        candidates[record.id] = record.fields;
       });
       fetchNextPage();
     }, function(err) {
