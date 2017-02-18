@@ -25,6 +25,20 @@
   border: #333 solid 2px;
 }
 
+#infobox h3 {
+  margin-top: 0;
+  padding-top: 0;
+  margin-bottom: 10px;
+  padding-bottom: 0;
+  text-align: center;
+}
+
+#infobox p {
+  margin: 0 5px 2px 0;
+  padding: 0;
+  text-align: right;
+}
+
 body {
   font-family: 'Lucida Grande', sans-serif;
 }

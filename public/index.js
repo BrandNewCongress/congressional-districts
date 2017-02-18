@@ -6,7 +6,7 @@ var colors = ["#0a72ff", "#1eff06", "#ff1902", "#2dfefe", "#827c01", "#fe07a6", 
 var stateToColor = _.zipObject(states, colors);
 
 var presentCandidate = function(candidate) {
-  return candidate['Name'];
+  return '<p>' + candidate['Name'] + '</p>';
 };
 
 var showDistrict = function(t) {
@@ -26,10 +26,10 @@ var displayInfoForDistrict = function(t) {
     const fetchName = function(r) { return r['Name'] };
     const candidatesForDistrict = t.properties.candidates || [];
 
-    value = districtName + "\n" + candidatesForDistrict.map(presentCandidate).join("\n");
+    value = '<h3>' + districtName + '</h3>' + candidatesForDistrict.map(presentCandidate).join("\n");
   }
 
-  document.getElementById('infobox').innerText = value;
+  document.getElementById('infobox').innerHTML = value;
 }
 
 var hideDistrict = function(t) {
