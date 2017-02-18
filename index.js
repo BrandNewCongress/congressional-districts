@@ -37,8 +37,9 @@ var getOrLoadDistricts = function(done) {
       view: 'Main View'
     }).eachPage(function(records, fetchNextPage) {
       records.forEach(function(record) {
+        nominations = record.get('Nominations') || [];
         districts[record.get('ID')] = {
-          nominations: record.get('Nominations').map(function(id) {
+          nominations: nominations.map(function(id) {
             return candidates[id];
           })
         };
