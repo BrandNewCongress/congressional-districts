@@ -10,8 +10,6 @@ var presentCandidate = function(candidate) {
 };
 
 var showDistrict = function(t) {
-  displayInfoForDistrict(t);
-
   if (!t || t.properties.districtID < 0) {
     return;
   }
@@ -124,7 +122,8 @@ fetch('https://raw.githubusercontent.com/hammerdr/congressionaldistricts/master/
       .attr("d", path)
       .style({ fill: colorDistrict, opacity: heatmapDistrictOpacity, stroke: colorDistrict })
       .on('mouseover', showDistrict)
-      .on('mouseout', hideDistrict);
+      .on('mouseout', hideDistrict)
+      .on('click', displayInfoForDistrict);
 
     var checkBorderByState = function(hex1, hex2) {
       return hex1.properties.state != hex2.properties.state;

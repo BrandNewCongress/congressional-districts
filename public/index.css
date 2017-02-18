@@ -6,6 +6,10 @@
   pointer-events: none;
 }
 
+.hexagon {
+  cursor: pointer;
+}
+
 .stateBorder {
   fill: none;
   stroke: #000;
