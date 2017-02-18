@@ -10,15 +10,7 @@ var presentCandidate = function(candidate) {
 };
 
 var showDistrict = function(t) {
-  var value = '';
-  if(t.properties.state != 'Ocean') {
-    const districtName = t.properties.state + '-' + t.properties.district;
-    const candidatesForDistrict = t.properties.candidates;
-
-    value = districtName + "\n" + candidatesForDistrict.map(presentCandidate).join("\n");
-  }
-
-  document.getElementById('infobox').innerText = value;
+  displayInfoForDistrict(t);
 
   if (!t || t.properties.districtID < 0) {
     return;
@@ -28,6 +20,19 @@ var showDistrict = function(t) {
     .filter(function(r, i) { return r && t.properties.districtID == r.properties.districtID; })
     .style({ fill: 'white', opacity: 1, stroke: colorDistrict });
 };
+
+var displayInfoForDistrict = function(t) {
+  var value = '';
+  if(t.properties.state != 'Ocean') {
+    const districtName = t.properties.state + '-' + t.properties.district;
+    const fetchName = function(r) { return r['Name'] };
+    const candidatesForDistrict = t.properties.candidates || [];
+
+    value = districtName + "\n" + candidatesForDistrict.map(presentCandidate).join("\n");
+  }
+
+  document.getElementById('infobox').innerText = value;
+}
 
 var hideDistrict = function(t) {
   d3.selectAll('path')
@@ -74,7 +79,20 @@ var addCandidateData = function(data, candidateData) {
     const districtNumber = datum.properties.district == '0' ? 'AL' : ("0" + datum.properties.district).slice(-2);
     const districtCode = datum.properties.state + '-' + districtNumber;
 
-    datum.properties.candidates = candidateData[districtCode] ? _.compact(candidateData[districtCode].nominations) : [];
+    const fetchName = function(r) { return r['Name'] };
+
+    if(candidateData[districtCode]) {
+      datum.properties.candidates = _.sortedUniqBy(
+        _.sortBy(
+          _.compact(candidateData[districtCode].nominations || []),
+          fetchName
+        ),
+        fetchName
+      );
+    } else {
+      datum.properties.candidates = [];
+    }
+
     maxLength = Math.max(maxLength, datum.properties.candidates.length);
   });
 };
