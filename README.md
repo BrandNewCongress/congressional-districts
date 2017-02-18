@@ -25,4 +25,7 @@ The service will be running [locally](http://localhost:5000).
 
 Go to [this site](https://polar-bastion-76735.herokuapp.com/).
 
+## Credit
+
+[Original hexmap by Daniel Donner](http://refinery.dailykosbeta.com/elections-maps/hexmap)
 
