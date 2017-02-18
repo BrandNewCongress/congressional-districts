@@ -12,3 +12,15 @@
   stroke-width: 2px;
   pointer-events: none;
 }
+
+#infobox {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 200px;
+  border: #333 solid 2px;
+}
+
+body {
+  font-family: 'Lucida Grande', sans-serif;
+}
