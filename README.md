@@ -7,7 +7,9 @@ A map of congressional districts and information about them.
 You will first need to have the AIRTABLE_API_KEY set in your environment.
 Then you can simple run
 
-  node index.js
+```
+$ node index.js
+```
 
 The service will be running [locally](http://localhost:5000).
 
