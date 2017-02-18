@@ -79,9 +79,18 @@ var heatmapDistrictOpacity = function(t) {
       return 0;
     }
 
-    return count / Math.min(maxLength, maxCandidateConfiguration);
+    const max = Math.min(maxLength, maxCandidateConfiguration);
+    if (count > max) {
+      return 0;
+    }
+
+    return count / max;
   } else {
     if (count < minCandidateConfiguration) {
+      return 0;
+    }
+
+    if (count > maxCandidateConfiguration) {
       return 0;
     }
 
