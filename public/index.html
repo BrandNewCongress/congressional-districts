@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html>
   <head>
     <link href=index.css rel=stylesheet>
@@ -14,6 +15,14 @@
     <form action=''>
       <label for=heatmap>District Heatmap</label>
       <input id=heatmap type=checkbox>
+      <br />
+      <label for=minCandidate>Minimum Number of Candidates</label>
+      <input id=minCandidate type=range min=0 max=1 step=1 value=0>
+      <span id=minCandidateValue>0</span>
+      <br />
+      <label for=maxCandidate>Maximum Number of Candidates</label>
+      <input id=maxCandidate type=range min=0 max=10 step=1 value=10>
+      <span id=maxCandidateValue>10</span>
     </form>
     <p><a href=http://refinery.dailykosbeta.com/elections-maps/hexmap>Original Hexmap by Daniel Donnor</a></p>
   </body>
