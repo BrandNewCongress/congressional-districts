@@ -13,17 +13,31 @@
     <div id=map></div>
     <div id=infobox></div>
     <form action=''>
-      <label for=heatmap>District Heatmap</label>
-      <input id=heatmap type=checkbox>
-      <br />
       <label for=minCandidate>Minimum Number of Candidates</label>
-      <input id=minCandidate type=range min=0 max=1 step=1 value=0>
+      <input id=minCandidate type=range min=0 max=20 step=1 value=0>
       <span id=minCandidateValue>0</span>
+
       <br />
-      <label for=maxCandidate>Maximum Number of Candidates</label>
-      <input id=maxCandidate type=range min=0 max=10 step=1 value=10>
-      <span id=maxCandidateValue>10</span>
+
+      Include candidates currently in round:
+      <select id='round'>
+        <option value='R1'> R1 And Up </option>
+        <option value='R2'> R2 And Up </option>
+        <option value='R3'> R3 And Up </option>
+        <option value='R4'> R4 And Up </option>
+        <option value='R5'> R5 </option>
+      </select>
+      and up.
     </form>
-    <p><a href=http://refinery.dailykosbeta.com/elections-maps/hexmap>Original Hexmap by Daniel Donnor</a></p>
+
+    <div id='stats'>
+      <span>
+        We have people in
+        <span id='filled-in'></span>
+        out of
+        <span id='total'></span>
+      </span>
+    </div>
+
   </body>
 </html>

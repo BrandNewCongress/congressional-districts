@@ -1,66 +1,47 @@
-const express = require('express');
-const app = express();
-const base = require('airtable').base('appvaAepP28NyUecP');
+const express = require('express')
+const app = express()
+const monk = require('monk')
+const db = monk(process.env.MONGODB_URI)
 
-var candidates = {};
-var districts = {};
+app.set('port', (process.env.PORT || 5000))
+app.use(express.static(__dirname + '/public'))
 
-app.set('port', (process.env.PORT || 5000));
+const People = db.get('People')
+const Districts = db.get('Congressional Districts')
 
-app.use(express.static(__dirname + '/public'));
+app.get('/api/candidates', async (req, res) => {
+  const rawNominees = await People.find(req.query.round
+      ? roundQuery(req.query.round)
+      : {nominationStatus: {$ne: 'Not Nominated'}}
+    , {fields: ['id', 'district']})
 
-var getOrLoadNominations = function(done) {
-  if(Object.keys(candidates).length > 0) {
-    done();
-  } else {
-    base('Nominations').select({
-      view: 'Main View'
-    }).eachPage(function(records, fetchNextPage) {
-      records.forEach(function(record) {
-        candidates[record.id] = record.fields;
-      });
-      fetchNextPage();
-    }, function(err) {
-      if (err) { console.error(err); return; }
+  const districtDocs = await db.get('Congressional Districts').find({id: {
+    $in: rawNominees.filter(n => n.district).map(n => n.district[0])
+  }})
 
-      done();
-    });
+  const districts = {}
+
+  for (let d of districtDocs) {
+    if (!d.stateAbbreviation)
+      console.log(d)
+
+    const key = `${d.stateAbbreviation[0]}-${d.congressionalDistrictCode}`
+    districts[key] = rawNominees.filter(n => n.district && n.district.includes(d.id)).length
   }
-};
 
-var getOrLoadDistricts = function(done) {
-  if(Object.keys(districts).length > 0) {
-    done();
-  } else {
-
-    base('Congressional Districts').select({
-      view: 'Main View'
-    }).eachPage(function(records, fetchNextPage) {
-      records.forEach(function(record) {
-        nominations = record.get('Nominations') || [];
-        districts[record.get('ID')] = {
-          nominations: nominations.map(function(id) {
-            return candidates[id];
-          })
-        };
-      });
-      fetchNextPage();
-    }, function(err) {
-      if (err) { console.error(err); return; }
-
-      done();
-    });
-  }
-};
-
-app.get('/api/candidates', function(req, res) {
-  getOrLoadNominations(function() {
-    getOrLoadDistricts(function() {
-      res.send(JSON.stringify(districts));
-    });
-  });
-});
+  return res.json(districts)
+})
 
 app.listen(app.get('port'), function() {
-  console.log('Node app is running on port', app.get('port'));
-});
+  console.log('Node app is running on port', app.get('port'))
+})
+
+function roundQuery (round) {
+  const rounds = ['R1', 'R2', 'R3', 'R4', 'R5']
+
+  return {
+    $or: rounds.slice(rounds.indexOf(round)).map(r => ({nominationStatus: {
+      $regex: `.*${r}.*`
+    }}))
+  }
+}
