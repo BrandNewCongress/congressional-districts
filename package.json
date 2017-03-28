@@ -1,24 +1,32 @@
 {
-  "name": "district-map",
+  "name": "congressional-districts",
   "version": "1.0.0",
-  "description": "Visualization for per-district data",
+  "description": "To visualize progress in the candidate recruitment pipeline by district",
   "main": "index.js",
-  "dependencies": {
-    "airtable": "^0.4.4",
-    "express": "^4.14.1"
+  "engines": {
+    "node": "7.7.2",
+    "npm": "4.1.2"
   },
-  "devDependencies": {},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/hammerdr/congressionaldistricts.git"
+    "url": "git+https://github.com/BrandNewCongress/congressional-districts.git"
   },
-  "author": "hammerdr",
+  "keywords": [
+    "bnc",
+    "d3",
+    "cd"
+  ],
+  "author": "hammerdr, ben-pr-p",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/hammerdr/congressionaldistricts/issues"
+    "url": "https://github.com/BrandNewCongress/congressional-districts/issues"
   },
-  "homepage": "https://github.com/hammerdr/congressionaldistricts#readme"
+  "homepage": "https://github.com/BrandNewCongress/congressional-districts#readme",
+  "dependencies": {
+    "express": "^4.15.2",
+    "monk": "^4.0.0"
+  }
 }
