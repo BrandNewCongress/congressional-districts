@@ -80,12 +80,16 @@ var heatmapDistrictOpacity = function(t) {
   var count = districtData[normalizeDistrict(t)];
   if (!count) count = 0
 
-  return count > minCandidateConfiguration ? 1 : 0
+  return count >= minCandidateConfiguration
+    ? count / maxLength
+    : 0
 };
 
 var addCandidateData = function(data, candidateData) {
   districtData = candidateData
+  maxLength = Math.max.apply(null, Object.keys(candidateData).map(k => candidateData[k]))
   toggleLoading()
+  setupSliders()
   if (recolor) recolor()
 };
 
@@ -103,7 +107,7 @@ var recolor;
 
 var changeRound = function (val) {
   toggleLoading()
-  
+
   fetch(val == 'All'
     ? '/api/candidates'
     : '/api/candidates?round=' + val
@@ -181,6 +185,8 @@ fetch('https://raw.githubusercontent.com/hammerdr/congressionaldistricts/master/
 
 
 document.addEventListener( "DOMContentLoaded", function(){
+  setupSliders()
+
   document.getElementById('minCandidate').addEventListener('change', function() {
     var value = document.getElementById('minCandidate').value;
     document.getElementById('minCandidateValue').innerText = value;
