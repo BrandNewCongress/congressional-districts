@@ -27,9 +27,14 @@
   "homepage": "https://github.com/BrandNewCongress/congressional-districts#readme",
   "dependencies": {
     "congressional-district-finder": "^0.2.0",
+    "d3": "^4.7.4",
+    "d3-geo": "^1.6.3",
+    "d3-selection": "^1.0.5",
     "express": "^4.15.2",
     "monk": "^4.0.0",
     "superagent": "^3.5.2",
+    "sveltify": "^1.1.0",
+    "topojson": "^2.2.0",
     "us-zcta-counties": "0.0.2"
   }
 }

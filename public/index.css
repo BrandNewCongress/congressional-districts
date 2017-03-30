@@ -1,44 +1,4 @@
-.districtBorder {
-  fill: none;
-  stroke: #000;
-  stroke-width: 1px;
-  stroke-opacity: .2;
-  pointer-events: none;
-}
-
-.hexagon {
-  cursor: pointer;
-}
-
-.stateBorder {
-  fill: none;
-  stroke: #000;
-  stroke-width: 2px;
-  pointer-events: none;
-}
-
-#infobox {
-  position: absolute;
-  top: 0;
-  right: 0;
-  width: 200px;
-  border: #333 solid 2px;
-}
-
-#infobox h3 {
-  margin-top: 0;
-  padding-top: 0;
-  margin-bottom: 10px;
-  padding-bottom: 0;
-  text-align: center;
-}
-
-#infobox p {
-  margin: 0 5px 2px 0;
-  padding: 0;
-  text-align: right;
-}
 
 body {
-  font-family: 'Lucida Grande', sans-serif;
+  font-family: 'Roboto', sans-serif;
 }

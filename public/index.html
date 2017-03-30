@@ -2,42 +2,14 @@
 <html>
   <head>
     <link href=index.css rel=stylesheet>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.5/d3.min.js"></script>
+    <!-- <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.5/d3.min.js"></script>
     <script src="https://d3js.org/topojson.v2.min.js"></script>
-    <script src=https://cdn.jsdelivr.net/lodash/4.17.4/lodash.min.js></script>
-    <script src=index.js></script>
+    <script src=https://cdn.jsdelivr.net/lodash/4.17.4/lodash.min.js></script> -->
+    <script src=build.js></script>
   </head>
   <body>
     <script>
     </script>
     <div id=map></div>
-    <div id=infobox></div>
-    <form action=''>
-      <label for=minCandidate>Minimum Number of Candidates</label>
-      <input id=minCandidate type=range min=0 max=20 step=1 value=0>
-      <span id=minCandidateValue>0</span>
-
-      <br />
-
-      Include candidates currently in round:
-      <select id='round'>
-        <option value='R1'> R1 And Up </option>
-        <option value='R2'> R2 And Up </option>
-        <option value='R3'> R3 And Up </option>
-        <option value='R4'> R4 And Up </option>
-        <option value='R5'> R5 </option>
-      </select>
-      and up.
-    </form>
-
-    <div id='stats'>
-      <span>
-        We have people in
-        <span id='filled-in'></span>
-        out of
-        <span id='total'></span>
-      </span>
-    </div>
-
   </body>
 </html>

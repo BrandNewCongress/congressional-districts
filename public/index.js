@@ -139,6 +139,8 @@ fetch('https://raw.githubusercontent.com/hammerdr/congressionaldistricts/master/
     var path = d3.geo.path().projection(projection)
     var hexFeatures = topojson.feature(data, data.objects.states).features;
 
+    console.log(hexFeatures)
+
     var hexagons = svg.append("g").attr("class", "hexagon").selectAll("hexagon")
       .data(hexFeatures)
       .enter()
